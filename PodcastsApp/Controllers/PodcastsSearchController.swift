@@ -11,22 +11,27 @@ import Alamofire
 
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
-    var podcasts = [
-        Podcast(trackName: "Lets build that app", artistName: "brian voong"),
-        Podcast(trackName: "Lets build that app", artistName: "brian voong")
-    ]
+    var podcasts = [Podcast]()
     
     let cellId = "cellId"
     
     let searchController = UISearchController(searchResultsController: nil)
     
 
+    fileprivate func setupTableView() {
+//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.tableFooterView = UIView()
+        
+        let nib = UINib(nibName: "PodcastCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellId)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSearchBar()
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        setupTableView()
     }
     
     fileprivate func setupSearchBar() {
@@ -44,54 +49,37 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PodcastCell
+
         let podcast = podcasts[indexPath.row]
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = "\(podcast.trackName ?? "")\n\(podcast.artistName ?? "")"
-        cell.imageView?.image = #imageLiteral(resourceName: "appicon")
+        cell.podcast = podcast
+
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return podcasts.count == 0 ? 250 : 0
+    }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Please enter a Search Term"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
         
-//        let url = "https://itunes.apple.com/search?term=\(searchText)"
-        
-        let url = "https://itunes.apple.com/search"
-        
-        let parameters = ["term" : searchText, "media": "podcast"]
-        
-        Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (dataResponse) in
-            if let err = dataResponse.error {
-                print("Failed to contact yahoo:", err)
-                return
-            }
-            
-            guard let data = dataResponse.data else {return}
-            
-//            let dummyString = String(data: data, encoding: String.Encoding.utf8)
-//            print(dummyString ?? "")
-            
-            do {
-                let searchResult = try JSONDecoder().decode(SearchResults.self, from: data)
-                print("Results count: ", searchResult.resultCount)
-                
-                searchResult.results.forEach({ (podcast) in
-                    print("\(podcast.trackName ?? ""), \(podcast.artistName ?? "")")
-                })
-                
-                self.podcasts = searchResult.results
-                self.tableView.reloadData()
-            }
-            catch let decodeErr {
-                print("Failed to decode: ", decodeErr)
-            }
+        APIService.shared.fetchPodcasts(searchText: searchText) { podcasts in
+            self.podcasts = podcasts
+            self.tableView.reloadData()
         }
-    }
-}
+        
 
-struct SearchResults: Decodable {
-    var resultCount: Int
-    let results: [Podcast]
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 132
+    }
 }
