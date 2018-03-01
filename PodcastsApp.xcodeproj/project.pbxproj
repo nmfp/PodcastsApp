@@ -10,6 +10,10 @@
 		1F5FEE7C20461A58005F6603 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEE7B20461A58005F6603 /* APIService.swift */; };
 		1F5FEE7F2046206E005F6603 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FEE7E2046206E005F6603 /* PodcastCell.xib */; };
 		1F5FEE8120462280005F6603 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEE8020462280005F6603 /* PodcastCell.swift */; };
+		1F5FEE832048AE92005F6603 /* EpisodesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEE822048AE92005F6603 /* EpisodesController.swift */; };
+		1F5FEE852048BC74005F6603 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEE842048BC74005F6603 /* Episode.swift */; };
+		1F5FEE8C2048BDCA005F6603 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEE8A2048BDCA005F6603 /* EpisodeCell.swift */; };
+		1F5FEE8D2048BDCA005F6603 /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FEE8B2048BDCA005F6603 /* EpisodeCell.xib */; };
 		1FB2A4282044C516008EEFDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2A4272044C516008EEFDE /* AppDelegate.swift */; };
 		1FB2A42A2044C516008EEFDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2A4292044C516008EEFDE /* ViewController.swift */; };
 		1FB2A42D2044C516008EEFDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FB2A42B2044C516008EEFDE /* Main.storyboard */; };
@@ -25,6 +29,10 @@
 		1F5FEE7B20461A58005F6603 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		1F5FEE7E2046206E005F6603 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
 		1F5FEE8020462280005F6603 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
+		1F5FEE822048AE92005F6603 /* EpisodesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesController.swift; sourceTree = "<group>"; };
+		1F5FEE842048BC74005F6603 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		1F5FEE8A2048BDCA005F6603 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		1F5FEE8B2048BDCA005F6603 /* EpisodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpisodeCell.xib; sourceTree = "<group>"; };
 		1FB2A4242044C516008EEFDE /* PodcastsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB2A4272044C516008EEFDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FB2A4292044C516008EEFDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +82,8 @@
 			children = (
 				1F5FEE7E2046206E005F6603 /* PodcastCell.xib */,
 				1F5FEE8020462280005F6603 /* PodcastCell.swift */,
+				1F5FEE8A2048BDCA005F6603 /* EpisodeCell.swift */,
+				1F5FEE8B2048BDCA005F6603 /* EpisodeCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				1FB2A43C2044CDA9008EEFDE /* PodcastsSearchController.swift */,
+				1F5FEE822048AE92005F6603 /* EpisodesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -126,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				1FB2A43F2044CE3D008EEFDE /* Podcast.swift */,
+				1F5FEE842048BC74005F6603 /* Episode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,6 +213,7 @@
 			files = (
 				1FB2A4322044C517008EEFDE /* LaunchScreen.storyboard in Resources */,
 				1FB2A42F2044C517008EEFDE /* Assets.xcassets in Resources */,
+				1F5FEE8D2048BDCA005F6603 /* EpisodeCell.xib in Resources */,
 				1F5FEE7F2046206E005F6603 /* PodcastCell.xib in Resources */,
 				1FB2A42D2044C516008EEFDE /* Main.storyboard in Resources */,
 			);
@@ -232,11 +245,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PodcastsApp/Pods-PodcastsApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,9 +287,12 @@
 				1FB2A43D2044CDA9008EEFDE /* PodcastsSearchController.swift in Sources */,
 				1FB2A42A2044C516008EEFDE /* ViewController.swift in Sources */,
 				1FB2A4282044C516008EEFDE /* AppDelegate.swift in Sources */,
+				1F5FEE832048AE92005F6603 /* EpisodesController.swift in Sources */,
 				1FB2A43A2044C6F1008EEFDE /* MainTabBarController.swift in Sources */,
+				1F5FEE8C2048BDCA005F6603 /* EpisodeCell.swift in Sources */,
 				1F5FEE7C20461A58005F6603 /* APIService.swift in Sources */,
 				1FB2A4402044CE3D008EEFDE /* Podcast.swift in Sources */,
+				1F5FEE852048BC74005F6603 /* Episode.swift in Sources */,
 				1F5FEE8120462280005F6603 /* PodcastCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,7 +441,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JBEYETDGSB;
 				INFOPLIST_FILE = PodcastsApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nMfpereira.PodcastsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -439,7 +460,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JBEYETDGSB;
 				INFOPLIST_FILE = PodcastsApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nMfpereira.PodcastsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
