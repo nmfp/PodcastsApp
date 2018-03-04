@@ -13,10 +13,13 @@ struct Episode {
     var title: String
     var pubDate: Date
     var description: String
-    var imageUrl: String?
+    var streamUrl: String
     var author: String
+
+    var imageUrl: String?
     
     init(feedItem: RSSFeedItem) {
+        self.streamUrl = feedItem.enclosure?.attributes?.url ?? ""
         self.title = feedItem.title ?? ""
         self.pubDate = feedItem.pubDate ?? Date()
         self.description = feedItem.iTunes?.iTunesSubtitle ?? feedItem.description ?? ""
