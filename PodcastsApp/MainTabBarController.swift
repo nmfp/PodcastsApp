@@ -22,6 +22,7 @@ class MainTabBarController: UITabBarController {
             generateNavigationController(with: UIViewController(), title: "Favorites", image: #imageLiteral(resourceName: "favorites")),
             generateNavigationController(with: UIViewController(), title: "Downloads", image: #imageLiteral(resourceName: "downloads"))
         ]
+        tabBar.tintColor = UIColor(red: 195/255, green: 58/255, blue: 255/255, alpha: 1)
     }
     
     

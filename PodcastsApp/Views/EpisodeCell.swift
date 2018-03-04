@@ -28,15 +28,19 @@ class EpisodeCell: UITableViewCell {
     }
     
     
-    var episode: Episode? {
+    var episode: Episode! {
         didSet {
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM dd, yyyy"
             
-            pudDateLabel.text = dateFormatter.string(from: episode?.pubDate ?? Date())
-            titleLabel.text = episode?.title
-            descriptionLabel.text = episode?.description
+            pudDateLabel.text = dateFormatter.string(from: episode.pubDate)
+            titleLabel.text = episode.title
+            descriptionLabel.text = episode.description
+            
+            let url = URL(string: episode.imageUrl?.toSecureHttps() ?? "")
+            print("ImageUrl: ", episode.imageUrl?.toSecureHttps() ?? "")
+            episodeImageView.sd_setImage(with: url)
         }
     }
 }

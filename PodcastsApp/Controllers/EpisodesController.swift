@@ -26,40 +26,13 @@ class EpisodesController: UITableViewController {
     fileprivate func fetchEpisodes() {
         
         guard let urlString = podcast?.feedUrl else {return}
-        let secureUrl = urlString.contains("https") ? urlString : urlString.replacingOccurrences(of: "http", with: "https")
-        guard let url = URL(string: secureUrl) else {return}
         
-        let parser = FeedParser(URL: url )
-        
-        parser?.parseAsync(result: { (result) in
-            print("Successfully parse feed: ", result.isSuccess)
-            
-            //This switch test all possible result types
-            switch result {
-            case let .atom(feed):
-                break
-            case let .rss(feed):
-                var episodes = [Episode]()
-                
-                //The items property contains the array of the elements in the rss/xml
-                feed.items?.forEach({ (feedItem) in
-                    let episode = Episode(feedItem: feedItem)
-                    episodes.append(episode)
-                })
-                
-                self.episodes = episodes
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                break
-            case let .json(feed):
-                break
-            case let .failure(feed):
-                break
-                
+        APIService.shared.fetchEpisodes(feedUrl: urlString) { (episodes) in
+            self.episodes = episodes
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
-        })
+        }
     }
     
     override func viewDidLoad() {
@@ -89,6 +62,20 @@ class EpisodesController: UITableViewController {
         return 134
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let episode = self.episodes[indexPath.row]
+        print(episode.title)
+        
+        let window = UIApplication.shared.keyWindow
+        
+        let playerDetailsView = Bundle.main.loadNibNamed("PlayerDetailsView", owner: self, options: nil)?.first as! PlayerDetailsView
+        
+        playerDetailsView.episode = episode
+        playerDetailsView.frame = self.view.frame
+        
+        window?.addSubview(playerDetailsView)
+        
+    }
 }
 
 
