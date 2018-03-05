@@ -18,6 +18,7 @@
 		1F5FEE922048CB2C005F6603 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEE912048CB2C005F6603 /* RSSFeed.swift */; };
 		1F5FEE94204B662B005F6603 /* PlayerDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FEE93204B662B005F6603 /* PlayerDetailsView.xib */; };
 		1F5FEE98204B6F42005F6603 /* PlayerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEE97204B6F42005F6603 /* PlayerDetailsView.swift */; };
+		1F5FEE9A204C2178005F6603 /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEE99204C2178005F6603 /* CMTime.swift */; };
 		1FB2A4282044C516008EEFDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2A4272044C516008EEFDE /* AppDelegate.swift */; };
 		1FB2A42A2044C516008EEFDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2A4292044C516008EEFDE /* ViewController.swift */; };
 		1FB2A42D2044C516008EEFDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FB2A42B2044C516008EEFDE /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 		1F5FEE912048CB2C005F6603 /* RSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeed.swift; sourceTree = "<group>"; };
 		1F5FEE93204B662B005F6603 /* PlayerDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerDetailsView.xib; sourceTree = "<group>"; };
 		1F5FEE97204B6F42005F6603 /* PlayerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailsView.swift; sourceTree = "<group>"; };
+		1F5FEE99204C2178005F6603 /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
 		1FB2A4242044C516008EEFDE /* PodcastsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB2A4272044C516008EEFDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FB2A4292044C516008EEFDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				1F5FEE8F2048CA6B005F6603 /* String.swift */,
 				1F5FEE912048CB2C005F6603 /* RSSFeed.swift */,
+				1F5FEE99204C2178005F6603 /* CMTime.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				1F5FEE98204B6F42005F6603 /* PlayerDetailsView.swift in Sources */,
 				1FB2A43D2044CDA9008EEFDE /* PodcastsSearchController.swift in Sources */,
 				1F5FEE902048CA6B005F6603 /* String.swift in Sources */,
+				1F5FEE9A204C2178005F6603 /* CMTime.swift in Sources */,
 				1FB2A42A2044C516008EEFDE /* ViewController.swift in Sources */,
 				1FB2A4282044C516008EEFDE /* AppDelegate.swift in Sources */,
 				1F5FEE832048AE92005F6603 /* EpisodesController.swift in Sources */,

@@ -39,25 +39,28 @@
                                 <constraint firstAttribute="width" secondItem="9JO-zU-u6L" secondAttribute="height" id="Lbv-zy-KnI"/>
                             </constraints>
                         </imageView>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="N1N-kW-wLP">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="N1N-kW-wLP">
                             <rect key="frame" x="-2" y="381" width="331" height="37"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="36" id="yY0-Dh-3Rr"/>
                             </constraints>
+                            <connections>
+                                <action selector="handleCurrentTimeSliderChange:" destination="omD-48-gz0" eventType="valueChanged" id="3B6-Vr-0yO"/>
+                            </connections>
                         </slider>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qUU-jw-LRi">
                             <rect key="frame" x="0.0" y="417" width="327" height="22"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZD-Sp-EzS" userLabel="startTime">
-                                    <rect key="frame" x="0.0" y="0.0" width="254.66666666666666" height="22"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZD-Sp-EzS" userLabel="startTime">
+                                    <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="22"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="88:88:88" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blP-F9-fra" userLabel="endTime">
-                                    <rect key="frame" x="254.66666666666671" y="0.0" width="72.333333333333343" height="22"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blP-F9-fra" userLabel="endTime">
+                                    <rect key="frame" x="41.333333333333343" y="0.0" width="285.66666666666663" height="22"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -97,6 +100,9 @@
                                     </constraints>
                                     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <state key="normal" title="Button" image="rewind15"/>
+                                    <connections>
+                                        <action selector="handleRewind:" destination="omD-48-gz0" eventType="touchUpInside" id="eti-Vs-OC9"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tA2-D2-Z87">
                                     <rect key="frame" x="92.666666666666671" y="0.0" width="49.000000000000014" height="195.33333333333334"/>
@@ -121,6 +127,9 @@
                                     </constraints>
                                     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <state key="normal" title="Button" image="fastforward15"/>
+                                    <connections>
+                                        <action selector="handleFastFoward:" destination="omD-48-gz0" eventType="touchUpInside" id="bN5-bX-A1o"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nIp-pf-CbL">
                                     <rect key="frame" x="278.33333333333331" y="0.0" width="48.666666666666686" height="195.33333333333334"/>
@@ -137,8 +146,11 @@
                                         <constraint firstAttribute="width" constant="34" id="JKN-O3-qT7"/>
                                     </constraints>
                                 </imageView>
-                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="EhB-9T-Acc">
+                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="EhB-9T-Acc">
                                     <rect key="frame" x="32" y="0.0" width="263" height="35"/>
+                                    <connections>
+                                        <action selector="handleVolumeChange:" destination="omD-48-gz0" eventType="valueChanged" id="zLy-Ub-30D"/>
+                                    </connections>
                                 </slider>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="max_volume" translatesAutoresizingMaskIntoConstraints="NO" id="WkC-gf-mBX">
                                     <rect key="frame" x="293" y="0.0" width="34" height="34"/>
@@ -164,6 +176,9 @@
             <viewLayoutGuide key="safeArea" id="p5W-go-h2q"/>
             <connections>
                 <outlet property="authorLabel" destination="riw-in-vlf" id="7ur-pi-Bgf"/>
+                <outlet property="currentTimeLabel" destination="PZD-Sp-EzS" id="pDA-zM-FLA"/>
+                <outlet property="currentTimeSlider" destination="N1N-kW-wLP" id="OCy-bL-tPv"/>
+                <outlet property="durationLabel" destination="blP-F9-fra" id="KmE-Pp-PHZ"/>
                 <outlet property="episodeImageView" destination="9JO-zU-u6L" id="Z6X-fI-JDX"/>
                 <outlet property="playPauseButton" destination="GrS-ws-H9m" id="4LO-g1-bmH"/>
                 <outlet property="titleLabel" destination="628-gG-bzJ" id="X6X-Js-vy1"/>
