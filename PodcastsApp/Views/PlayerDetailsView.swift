@@ -13,6 +13,7 @@ class PlayerDetailsView: UIView {
     
     var episode: Episode! {
         didSet {
+            miniTitleLabel.text = episode.title
             titleLabel.text = episode.title
             authorLabel.text = episode.author
 
@@ -21,6 +22,7 @@ class PlayerDetailsView: UIView {
             let urlString = episode.imageUrl?.toSecureHttps() ?? ""
             guard let url = URL(string: urlString) else {return}
             episodeImageView.sd_setImage(with: url, completed: nil);
+            miniEpisodeImageView.sd_setImage(with: url, completed: nil);
         }
     }
     
@@ -31,6 +33,7 @@ class PlayerDetailsView: UIView {
         let playerItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: playerItem)
         player.play()
+//        handlePlayPause()
     }
     
     let player: AVPlayer = {
@@ -42,14 +45,14 @@ class PlayerDetailsView: UIView {
     fileprivate func observePlayerCurrentTime() {
         let interval = CMTimeMake(1, 2)
         
-        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { (time) in
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] (time) in
             
-            self.currentTimeLabel.text = time.toDisplayString()
+            self?.currentTimeLabel.text = time.toDisplayString()
             
-            let durationTime = self.player.currentItem?.duration
-            self.durationLabel.text = durationTime?.toDisplayString()
+            let durationTime = self?.player.currentItem?.duration
+            self?.durationLabel.text = durationTime?.toDisplayString()
             
-            self.updateCurrentTimeSlider()
+            self?.updateCurrentTimeSlider()
         }
     }
     
@@ -61,25 +64,38 @@ class PlayerDetailsView: UIView {
         self.currentTimeSlider.value = Float(percentage)
     }
     
+    var panGesture: UIPanGestureRecognizer!
+    
+    fileprivate func setupGestures() {
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
+        miniPlayerView.addGestureRecognizer(panGesture)
+        
+        maximizedStackView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismissalPan)))
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        setupGestures()
         
         observePlayerCurrentTime()
         
         //Adding an observer to know where the audio starts automatically
         let time = CMTimeMake(1, 3)
         let times = [NSValue(time: time)]
-        player.addBoundaryTimeObserver(forTimes: times, queue: .main) {
+        player.addBoundaryTimeObserver(forTimes: times, queue: .main) { [weak self] in
             print("Episode started playing...")
-            self.enlargeEpisodeImageView()
+            self?.enlargeEpisodeImageView()
         }
     }
+    
+
     
     @IBOutlet weak var episodeImageView: UIImageView! {
         didSet {
             episodeImageView.layer.cornerRadius = 5
             episodeImageView.clipsToBounds = true
-            
             episodeImageView.transform = shrunkenTransform
         }
     }
@@ -89,6 +105,25 @@ class PlayerDetailsView: UIView {
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var currentTimeSlider: UISlider!
+    
+    
+    @IBOutlet weak var miniPlayerView: UIView!
+    @IBOutlet weak var maximizedStackView: UIStackView!
+    @IBOutlet weak var miniEpisodeImageView: UIImageView!
+    @IBOutlet weak var miniTitleLabel: UILabel!
+    @IBOutlet weak var miniPlayPauseButton: UIButton! {
+        didSet {
+            miniPlayPauseButton.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
+            miniPlayPauseButton.transform = shrunkenTransform
+        }
+    }
+    @IBOutlet weak var miniFastForwardButton: UIButton! {
+        didSet {
+            miniFastForwardButton.addTarget(self, action: #selector(handleFastFoward), for: .touchUpInside)
+            miniFastForwardButton.transform = .identity
+//            miniFastForwardButton.imageEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8)
+        }
+    }
     
     
     @IBAction func handleCurrentTimeSliderChange(_ sender: Any) {
@@ -140,11 +175,13 @@ class PlayerDetailsView: UIView {
         if player.timeControlStatus == .paused {
             player.play()
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             enlargeEpisodeImageView()
         }
         else {
             player.pause()
             playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             shrinkEpisodeImageView()
         }
     }
@@ -156,6 +193,14 @@ class PlayerDetailsView: UIView {
     }
     
     @IBAction func handleDismiss(_ sender: Any) {
-        self.removeFromSuperview()
+        UIApplication.mainTabBarController()?.minimizePlayerDetails();
+    }
+    
+    static func initFromNib() -> PlayerDetailsView {
+        return Bundle.main.loadNibNamed("PlayerDetailsView", owner: self, options: nil)?.first as! PlayerDetailsView
+    }
+    
+    deinit {
+        print("player object deinit...")
     }
 }

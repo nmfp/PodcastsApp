@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F11E495207596CC00F6FCDD /* PlayerDetailsView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F11E494207596CC00F6FCDD /* PlayerDetailsView+Gestures.swift */; };
+		1F11E497207599DB00F6FCDD /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F11E496207599DB00F6FCDD /* UIApplication.swift */; };
 		1F5FEE7C20461A58005F6603 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEE7B20461A58005F6603 /* APIService.swift */; };
 		1F5FEE7F2046206E005F6603 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5FEE7E2046206E005F6603 /* PodcastCell.xib */; };
 		1F5FEE8120462280005F6603 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEE8020462280005F6603 /* PodcastCell.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F11E494207596CC00F6FCDD /* PlayerDetailsView+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerDetailsView+Gestures.swift"; sourceTree = "<group>"; };
+		1F11E496207599DB00F6FCDD /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		1F5FEE7B20461A58005F6603 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		1F5FEE7E2046206E005F6603 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
 		1F5FEE8020462280005F6603 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 				1F5FEE8B2048BDCA005F6603 /* EpisodeCell.xib */,
 				1F5FEE93204B662B005F6603 /* PlayerDetailsView.xib */,
 				1F5FEE97204B6F42005F6603 /* PlayerDetailsView.swift */,
+				1F11E494207596CC00F6FCDD /* PlayerDetailsView+Gestures.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -106,6 +111,7 @@
 				1F5FEE8F2048CA6B005F6603 /* String.swift */,
 				1F5FEE912048CB2C005F6603 /* RSSFeed.swift */,
 				1F5FEE99204C2178005F6603 /* CMTime.swift */,
+				1F11E496207599DB00F6FCDD /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F11E497207599DB00F6FCDD /* UIApplication.swift in Sources */,
 				1F5FEE922048CB2C005F6603 /* RSSFeed.swift in Sources */,
 				1F5FEE98204B6F42005F6603 /* PlayerDetailsView.swift in Sources */,
 				1FB2A43D2044CDA9008EEFDE /* PodcastsSearchController.swift in Sources */,
@@ -315,6 +322,7 @@
 				1F5FEE9A204C2178005F6603 /* CMTime.swift in Sources */,
 				1FB2A42A2044C516008EEFDE /* ViewController.swift in Sources */,
 				1FB2A4282044C516008EEFDE /* AppDelegate.swift in Sources */,
+				1F11E495207596CC00F6FCDD /* PlayerDetailsView+Gestures.swift in Sources */,
 				1F5FEE832048AE92005F6603 /* EpisodesController.swift in Sources */,
 				1FB2A43A2044C6F1008EEFDE /* MainTabBarController.swift in Sources */,
 				1F5FEE8C2048BDCA005F6603 /* EpisodeCell.swift in Sources */,
