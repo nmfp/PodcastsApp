@@ -75,9 +75,9 @@ class APIService {
                 
                 completionHandler(searchResult.results)
                 
-                searchResult.results.forEach({ (podcast) in
-                    print("\(podcast.trackName ?? ""), \(podcast.artistName ?? "")")
-                })
+//                searchResult.results.forEach({ (podcast) in
+//                    print("\(podcast.trackName ?? ""), \(podcast.artistName ?? "")")
+//                })
             }
             catch let decodeErr {
                 print("Failed to decode: ", decodeErr)

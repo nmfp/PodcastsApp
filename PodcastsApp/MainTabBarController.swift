@@ -9,24 +9,30 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UINavigationBar.appearance().prefersLargeTitles = true
+        if #available(iOS 11.0, *) {
+            UINavigationBar.appearance().prefersLargeTitles = true
+        } else {
+            // Fallback on earlier versions
+        }
         view.backgroundColor = .white
         
-        
+        setupViewControllers()
+        setupPlayerDetailView()
+    }
+    
+    fileprivate func setupViewControllers() {
+        let layout = UICollectionViewFlowLayout()
         viewControllers = [
-            generateNavigationController(with: PodcastsSearchController(), title: "Search", image: #imageLiteral(resourceName: "search")),
-            generateNavigationController(with: UIViewController(), title: "Favorites", image: #imageLiteral(resourceName: "favorites")),
-            generateNavigationController(with: UIViewController(), title: "Downloads", image: #imageLiteral(resourceName: "downloads"))
+            generateNavigationController(with: PodcastsSearchController(), title: "Search", image:  #imageLiteral(resourceName: "search")),
+            generateNavigationController(with: FavoritesController(collectionViewLayout: layout), title: "Favorites", image: #imageLiteral(resourceName: "favorites")),
+            generateNavigationController(with: UIViewController(), title: "Downloads", image:  #imageLiteral(resourceName: "downloads"))
         ]
         tabBar.tintColor = UIColor(red: 195/255, green: 58/255, blue: 255/255, alpha: 1)
-        
-        setupPlayerDetailView()
-        
-        
     }
     
     @objc func minimizePlayerDetails() {
@@ -46,7 +52,7 @@ class MainTabBarController: UITabBarController {
         }, completion: nil)
     }
     
-    func maximizePlayerDetails(episode: Episode?) {
+    func maximizePlayerDetails(episode: Episode?, playlistEpisodes: [Episode] = []) {
         maximizedTopAnchorConstraint.isActive = true
         maximizedTopAnchorConstraint.constant = 0
         minizedTopAnchorConstraint.isActive = false
@@ -56,6 +62,8 @@ class MainTabBarController: UITabBarController {
         if episode != nil {
             playerDetailsView.episode = episode
         }
+        
+        playerDetailsView.playlistEpisodes = playlistEpisodes
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()

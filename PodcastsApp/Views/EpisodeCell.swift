@@ -39,7 +39,7 @@ class EpisodeCell: UITableViewCell {
             descriptionLabel.text = episode.description
             
             let url = URL(string: episode.imageUrl?.toSecureHttps() ?? "")
-            print("ImageUrl: ", episode.imageUrl?.toSecureHttps() ?? "")
+//            print("ImageUrl: ", episode.imageUrl?.toSecureHttps() ?? "")
             episodeImageView.sd_setImage(with: url)
         }
     }

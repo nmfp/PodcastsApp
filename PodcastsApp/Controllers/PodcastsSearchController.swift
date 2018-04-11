@@ -31,15 +31,24 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         setupSearchBar()
         
         setupTableView()
+        searchBar(searchController.searchBar, textDidChange: "Npr")
     }
     
     fileprivate func setupSearchBar() {
         
         self.definesPresentationContext = true
         
-        navigationItem.searchController = searchController
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        } else {
+            // Fallback on earlier versions
+        }
         //Sets the searchBar for always show
-        navigationItem.hidesSearchBarWhenScrolling = false
+        if #available(iOS 11.0, *) {
+            navigationItem.hidesSearchBarWhenScrolling = false
+        } else {
+            // Fallback on earlier versions
+        }
         //Maintains white background when searching
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
