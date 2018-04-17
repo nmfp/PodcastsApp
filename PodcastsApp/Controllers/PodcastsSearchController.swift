@@ -31,7 +31,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         setupSearchBar()
         
         setupTableView()
-        searchBar(searchController.searchBar, textDidChange: "Npr")
+//        searchBar(searchController.searchBar, textDidChange: "Npr")
     }
     
     fileprivate func setupSearchBar() {

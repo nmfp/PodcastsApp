@@ -131,6 +131,20 @@ class EpisodesController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return episodes.isEmpty ? 200 : 0
     }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let downloadAction = UITableViewRowAction(style: .normal, title: "Download") { (_, _) in
+            print("Downloading episode into userDefaults...")
+            let episode = self.episodes[indexPath.row]
+            UserDefaults.standard.downloadEpisode(episode: episode)
+            
+            
+            //Download the podcast episode using Alamofire
+            APIService.shared.downloadEpisode(episode: episode)
+        }
+        
+        return [downloadAction]
+    }
 }
 
 

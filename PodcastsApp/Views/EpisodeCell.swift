@@ -14,6 +14,7 @@ class EpisodeCell: UITableViewCell {
     
     @IBOutlet weak var episodeImageView: UIImageView!
     @IBOutlet weak var pudDateLabel: UILabel!
+    @IBOutlet weak var progressLabel: UILabel!
     
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {

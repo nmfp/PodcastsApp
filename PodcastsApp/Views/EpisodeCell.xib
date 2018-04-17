@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14092" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14081.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -50,19 +50,29 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPF-6D-mBl">
+                        <rect key="frame" x="51.5" y="89.5" width="70.5" height="34.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Vms-eB-bNt" firstAttribute="leading" secondItem="MMN-tY-GYh" secondAttribute="trailing" constant="16" id="PnR-kt-UmD"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Vms-eB-bNt" secondAttribute="trailing" id="Uor-BP-zGv"/>
+                    <constraint firstItem="wPF-6D-mBl" firstAttribute="centerY" secondItem="MMN-tY-GYh" secondAttribute="centerY" id="bjb-37-faO"/>
                     <constraint firstItem="MMN-tY-GYh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dD1-a1-mEq"/>
                     <constraint firstItem="Vms-eB-bNt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="flj-Q9-QiW"/>
                     <constraint firstItem="MMN-tY-GYh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="jtV-Di-jVA"/>
+                    <constraint firstItem="wPF-6D-mBl" firstAttribute="centerX" secondItem="MMN-tY-GYh" secondAttribute="centerX" id="ruF-zz-2sb"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="descriptionLabel" destination="0iF-wv-VgB" id="T8d-E7-WcE"/>
                 <outlet property="episodeImageView" destination="MMN-tY-GYh" id="3NP-qJ-koP"/>
+                <outlet property="progressLabel" destination="wPF-6D-mBl" id="DSh-46-CrQ"/>
                 <outlet property="pudDateLabel" destination="vrQ-9e-Vth" id="tTe-j2-Rej"/>
                 <outlet property="titleLabel" destination="n4N-8L-MJ8" id="CLV-uN-dG5"/>
             </connections>

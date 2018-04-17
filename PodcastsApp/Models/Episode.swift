@@ -9,7 +9,7 @@
 import Foundation
 import FeedKit
 
-struct Episode {
+struct Episode: Encodable, Decodable {
     var title: String
     var pubDate: Date
     var description: String
@@ -17,6 +17,7 @@ struct Episode {
     var author: String
 
     var imageUrl: String?
+    var fileUrl: String?
     
     init(feedItem: RSSFeedItem) {
         self.streamUrl = feedItem.enclosure?.attributes?.url ?? ""
